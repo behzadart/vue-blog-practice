@@ -18,6 +18,9 @@
           example, has a site directory at wikipedia.org that links to every
           language-specific home page, including en.wikipedia.org.
         </p>
+        <router-link class="btn btn-dark" :to="{ name: 'users' }">
+          users
+        </router-link>
       </div>
     </div>
   </div>

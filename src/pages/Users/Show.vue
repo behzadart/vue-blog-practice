@@ -1,16 +1,14 @@
 <template>
-  <div  v-if="route.params.id == undefined " class="container mt-5">
+  <div class="container mt-5">
     <!-- {{axios}} -->
     <div class="row g-3">
-      <div class="col-md-4" v-for="user in users" :key="user.id">
-        <UserCardViwe :user="user" />
+      <div class="col-md-4">
+          <UserCardViwe :user="user" />
         <!-- {{users}} -->
         <!-- <UserCardViwe v-for="user in users" :key="user.id" :user="user" /> -->
       </div>
     </div>
   </div>
-  <!-- <hr /> -->
-  <router-view v-else ></router-view>
 </template>
 
 <script>
@@ -26,27 +24,25 @@ export default {
     UserCardViwe,
   },
   setup() {
-    const users = ref([]);
+    const user = ref({});
     const route = useRoute();
-
-    console.log(route.params);
+    // console.log(route.params.id)
     // Make a request for a user with a given ID
-    function getUsers() {
+    function getUser() {
       axios
-        .get("https://jsonplaceholder.typicode.com/users")
+        .get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
         .then(function (response) {
           // handle success
           // console.log(response.data);
-          users.value = response.data;
+          user.value = response.data;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    // console.log(route)
-    getUsers();
-    return { users, axios, useRoute,route };
+    getUser();
+    return { user, axios, useRoute };
   },
 };
 </script>
