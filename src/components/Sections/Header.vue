@@ -69,13 +69,13 @@
   </div> -->
 </template>
 
-<script>
+<script >
 export default {
   name: "mainHeader",
 };
 </script>
 
-<style>
+<style scoped>
 .router-link-active{
   border-bottom: 2px black solid;
 }

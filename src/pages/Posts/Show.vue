@@ -1,8 +1,10 @@
 <template>
   <div class="col-md-4">
-    <UserCardViwe :user="user" />
-    <!-- {{users}} -->
-    <!-- <UserCardViwe v-for="user in users" :key="user.id" :user="user" /> -->
+    <postCardViwe :post="post" />
+    <div class="card-footer">
+      <button class="btn btn-sm btn-dark me-4">Edit</button>
+      <button class="btn btn-sm btn-danger">Delet</button>
+    </div>
   </div>
 </template>
 
@@ -10,34 +12,34 @@
 // const axios = require('axios').default;
 import axios from "axios";
 import { ref } from "vue";
-import UserCardViwe from "../../components/users/cardview.vue";
+import PostCardViwe from "../../components/Posts/cardview.vue";
 import { useRoute } from "vue-router";
 
 export default {
   name: "AB",
   components: {
-    UserCardViwe,
+    PostCardViwe,
   },
   setup() {
-    const user = ref({});
+    const post = ref({});
     const route = useRoute();
     // console.log(route.params.id)
     // Make a request for a user with a given ID
-    function getUser() {
+    function getPost() {
       axios
-        .get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
+        .get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
         .then(function (response) {
           // handle success
           // console.log(response.data);
-          user.value = response.data;
+          post.value = response.data;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    getUser();
-    return { user, axios, useRoute };
+    getPost();
+    return { post, axios /* useRoute */ };
   },
 };
 </script>

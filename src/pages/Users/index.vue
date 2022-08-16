@@ -1,20 +1,10 @@
 <template>
-  <div  v-if="route.params.id == undefined " class="container mt-5">
-    <!-- {{axios}} -->
-    <div class="row g-3">
-      <div class="col-md-4" v-for="user in users" :key="user.id">
-        <UserCardViwe :user="user" />
-        <!-- {{users}} -->
-        <!-- <UserCardViwe v-for="user in users" :key="user.id" :user="user" /> -->
-      </div>
-    </div>
+  <div class="col-md-4" v-for="user in users" :key="user.id">
+    <UserCardViwe :user="user" />
   </div>
-  <!-- <hr /> -->
-  <router-view v-else ></router-view>
 </template>
 
 <script>
-// const axios = require('axios').default;
 import axios from "axios";
 import { ref } from "vue";
 import UserCardViwe from "../../components/users/cardview.vue";
@@ -46,7 +36,7 @@ export default {
     }
     // console.log(route)
     getUsers();
-    return { users, axios, useRoute,route };
+    return { users, axios, useRoute, route };
   },
 };
 </script>

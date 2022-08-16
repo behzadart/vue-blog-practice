@@ -1,6 +1,10 @@
 <template>
   <div class="card" style="width: 18rem">
-    <div class="card-header">{{ user.name }}</div>
+    <div class="card-header">
+      <router-link :to="{name : 'userId', params: { id: user.id } }">
+        {{ user.name }}
+      </router-link>
+    </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID : {{ user.id }}</li>
       <li class="list-group-item">USER NAME : {{ user.username }}</li>
