@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <router-link :to="{ name: 'createPost' }" class="btn btn-dark">Create post</router-link>
+  </div>
   <div class="col-md-4" v-for="post in posts" :key="post.id">
     <postCardViwe :post="post" />
   </div>
